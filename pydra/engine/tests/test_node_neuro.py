@@ -36,15 +36,15 @@ DEFAULT_MEMORY_MIN_GB = None
 Inputs = {
     "subject_id":
     "sub-01",
-    "output_spaces": ["fsaverage", "fsaverage5"],
+    "output_spaces": ["fsnative", "fsaverage5"],
     "source_file":
-    "/fmriprep_test/workdir1/fmriprep_wf/single_subject_01_wf/func_preproc_ses_test_task_fingerfootlips_wf/bold_t1_trans_wf/merge/vol0000_xform-00000_merged.nii",
+    "/data/fmriprep_partial/workdir/fmriprep_wf/single_subject_01_wf/func_preproc_ses_test_task_fingerfootlips_wf/bold_t1_trans_wf/merge/vol0000_xform-00000_merged.nii",
     "t1_preproc":
-    "/fmriprep_test/output1/fmriprep/sub-01/anat/sub-01_T1w_preproc.nii.gz",
+    "/data/fmriprep_partial/outdir/fmriprep/sub-01/anat/sub-01_T1w_preproc.nii.gz",
     "t1_2_fsnative_forward_transform":
-    "/fmriprep_test/workdir1/fmriprep_wf/single_subject_01_wf/anat_preproc_wf/surface_recon_wf/t1_2_fsnative_xfm/out.lta",
+    "/data/fmriprep_partial/workdir/fmriprep_wf/single_subject_01_wf/anat_preproc_wf/surface_recon_wf/t1_2_fsnative_xfm/out.lta",
     "subjects_dir":
-    "/fmriprep_test/output1/freesurfer/"
+    "/data/fmriprep_partial/outdir/freesurfer/"
 }
 
 Plugins = ["serial"]

@@ -111,8 +111,9 @@ def test_node_4a():
 
 @pytest.mark.parametrize("plugin", Plugins)
 @python35_only
-def test_node_5(plugin, change_dir):
+def test_node_5(plugin, tmpdir):
     """Node with interface and inputs, no mapper, running interface"""
+    tmpdir.chdir()
     interf_addtwo = FunctionInterface(fun_addtwo, ["out"])
     nn = Node(
         name="NA",
