@@ -16,10 +16,13 @@ clean-build:
 clean: clean-pyc clean-build
 
 format:
-	black pydra setup.py
+	black pydra tools setup.py
 
 lint:
-	flake8
+	# Run black twice to allow all issues to appear before failing
+	black --check pydra tools setup.py || true
+	flake8 pydra tools setup.py
+	black --check pydra tools setup.py
 
 test: clean-pyc
 	py.test -vs -n auto --cov pydra --cov-config .coveragerc --cov-report xml:cov.xml --doctest-modules pydra

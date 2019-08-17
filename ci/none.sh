@@ -41,7 +41,7 @@ function travis_before_script {
             pip install ".[test]"
         fi
     elif [ "$CHECK_TYPE" = "style" ]; then
-        pip install black
+        pip install black flake8
     fi
 }
 
@@ -50,6 +50,7 @@ function travis_script {
         pytest -vs -n auto --cov pydra tutorial --cov-config .coveragerc --cov-report xml:cov.xml --doctest-modules pydra
     elif [ "$CHECK_TYPE" = "style" ]; then
         black --check pydra tools setup.py
+        flake8 pydra tools setup.py
     fi
 }
 
