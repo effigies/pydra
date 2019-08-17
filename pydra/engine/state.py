@@ -177,7 +177,7 @@ class State:
             if st_combiner:
                 # keys and groups from previous states
                 # after taking into account combiner from current state
-                keys_f_st, group_for_inputs_f_st, groups_stack_f_st, combiner_all_st = aux._splits_groups(
+                keys_f_st, group_for_inputs, groups_stack, combiner_all_st = aux._splits_groups(
                     st.splitter_rpn_final,
                     combiner=st_combiner,
                     inner_inputs=st.inner_inputs,
@@ -185,8 +185,6 @@ class State:
                 self.keys_final += keys_f_st  # st.keys_final
                 if not hasattr(st, "group_for_inputs_final"):
                     raise Exception("previous state has to run first")
-                group_for_inputs = group_for_inputs_f_st
-                groups_stack = groups_stack_f_st
                 self.left_combiner_all += combiner_all_st
             else:
                 # if no element from st.splitter is in the current combiner,

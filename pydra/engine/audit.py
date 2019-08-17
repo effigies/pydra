@@ -1,7 +1,15 @@
-import os, json
+import os
+import json
 from pathlib import Path
 import dataclasses as dc
-from ..utils.messenger import send_message, make_message, gen_uuid, now, AuditFlag
+from ..utils.messenger import (
+    send_message,
+    make_message,
+    gen_uuid,
+    now,
+    AuditFlag,
+    CONTEXT_URL,
+)
 from .helpers import ensure_list, gather_runtime_info
 
 
@@ -85,9 +93,7 @@ class Audit:
             ) as fp:
                 context = json.load(fp)
         else:
-            context = {
-                "@context": "https://raw.githubusercontent.com/nipype/pydra/master/pydra/schema/context.jsonld"
-            }
+            context = {"@context": CONTEXT_URL}
         if self.audit_flags & flags:
             if self.messenger_args:
                 send_message(

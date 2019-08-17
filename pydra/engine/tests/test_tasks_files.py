@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 import numpy as np
-import pytest
 import typing as ty
 
 from ..submitter import Submitter

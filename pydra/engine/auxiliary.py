@@ -30,7 +30,7 @@ def _ordering(
 ):
     """ Used in the splitter2rpn to get a proper order of fields and signs. """
     if type(el) is tuple:
-        # checking if the splitter dont contain splitter from previous nodes, i.e. has str "_NA", etc.
+        # check if the splitter dont contain splitter from previous nodes, i.e. has str "_NA", etc.
         if type(el[0]) is str and el[0].startswith("_"):
             node_nm = el[0][1:]
             if node_nm not in other_states:
@@ -163,7 +163,7 @@ def _iterate_list(element, sign, other_states, output_splitter, state_fields=Tru
 
 
 def splitting_axis(state_inputs, splitter_rpn):
-    """Having inputs and splitter (in rpn notation), functions returns the axes of output for every input."""
+    """Return output axis for each state input"""
     axis_for_input = {}
     stack = []
     # to remember current axis
@@ -859,8 +859,6 @@ def _splits_groups(splitter_rpn, combiner=None, inner_inputs=None):
 def _single_op_splits(
     op_single, inputs, inner_inputs, shapes_var, previous_states_ind, keys_fromLeftSpl
 ):
-    import numpy as np
-
     if op_single.startswith("_"):
         return (
             previous_states_ind[op_single][0],
@@ -970,7 +968,7 @@ def connect_splitters(splitter, other_states):
             else:  # this is Right part
                 left_part = _complete_left(other_states=other_states)
                 right_part = splitter
-        # if splitter is tuple, it has to be either Left or Right part, you can't have (Left, Right)
+        # if splitter is tuple, it must be either Left or Right part, you can't have (Left, Right)
         elif isinstance(splitter, tuple):
             lr_flag = _left_right_check(splitter, other_states=other_states)
             if lr_flag == "Left":

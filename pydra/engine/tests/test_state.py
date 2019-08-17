@@ -1,5 +1,4 @@
-import sys
-import pytest, pdb
+import pytest
 
 from ..state import State
 
@@ -130,18 +129,18 @@ def test_state_connect_1a():
 
 def test_state_connect_1b_exception():
     """can't provide explicitly NA.a (should be _NA)"""
-    st1 = State(name="NA", splitter="a")
+    State(name="NA", splitter="a")
     with pytest.raises(Exception) as excinfo:
-        st2 = State(name="NB", splitter="NA.a")
+        State(name="NB", splitter="NA.a")
     assert "consider using _NA" in str(excinfo.value)
 
 
 @pytest.mark.parametrize("splitter2, other_states2", [("_NA", {}), ("_N", {"NA": ()})])
 def test_state_connect_1c_exception(splitter2, other_states2):
     """can't ask for splitter from node that is not connected"""
-    st1 = State(name="NA", splitter="a")
+    State(name="NA", splitter="a")
     with pytest.raises(Exception) as excinfo:
-        st2 = State(name="NB", splitter=splitter2, other_states=other_states2)
+        State(name="NB", splitter=splitter2, other_states=other_states2)
     assert "other nodes that are connected" in str(excinfo.value)
 
 
@@ -184,7 +183,7 @@ def test_state_connect_2():
 
 def test_state_connect_2a():
     """ two 'connected' states: testing groups, prepare_states and prepare_inputs
-         the second state has explicit splitter that contains 
+         the second state has explicit splitter that contains
          splitter from the first node and a new field;
          adding an additional scalar field that is not part of the splitter
     """
@@ -622,9 +621,9 @@ def test_state_connect_innerspl_1a():
 
 def test_state_connect_innerspl_1b():
     """incorrect splitter - Right & Left parts in scalar splitter"""
+    st1 = State(name="NA", splitter="a")
     with pytest.raises(Exception):
-        st1 = State(name="NA", splitter="a")
-        st2 = State(name="NB", splitter=("_NA", "b"), other_states={"NA": (st1, "b")})
+        State(name="NB", splitter=("_NA", "b"), other_states={"NA": (st1, "b")})
 
 
 def test_state_connect_innerspl_2():
@@ -982,7 +981,7 @@ def test_state_combine_1():
     assert st.splitter == "NA.a"
     assert st.splitter_rpn == ["NA.a"]
     assert st.combiner == ["NA.a"]
-    assert st.splitter_final == None
+    assert st.splitter_final is None
     assert st.splitter_rpn_final == []
     assert st.group_for_inputs_final == {}
     assert st.groups_stack_final == []

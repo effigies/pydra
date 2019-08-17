@@ -1,4 +1,4 @@
-from copy import copy, deepcopy
+from copy import copy
 from .helpers import ensure_list
 
 

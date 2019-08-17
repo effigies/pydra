@@ -4,6 +4,10 @@ import enum
 from pathlib import Path
 import os
 
+CONTEXT_URL = (
+    "https://raw.githubusercontent.com/nipype/pydra/master/pydra/schema/context.jsonld"
+)
+
 
 def gen_uuid():
     import uuid
@@ -91,9 +95,7 @@ def send_message(message, messengers=None, **kwargs):
 
 def make_message(obj, context=None):
     if context is None:
-        context = {
-            "@context": "https://raw.githubusercontent.com/nipype/pydra/enh/task/pydra/schema/context.jsonld"
-        }
+        context = {"@context": CONTEXT_URL}
     message = context.copy()
     message.update(**obj)
     return message

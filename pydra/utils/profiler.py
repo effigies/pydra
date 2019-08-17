@@ -4,7 +4,6 @@
 """
 Utilities to keep track of performance
 """
-import os
 from pathlib import Path
 import psutil
 import threading
